@@ -1,7 +1,7 @@
 #include "PhoneBook.hpp"
 
 
-PhoneBook::PhoneBook() : contactCount(0){}
+PhoneBook::PhoneBook() : contactIndex(0), contactCount(0){}
 
 PhoneBook::~PhoneBook() {}
 
@@ -10,11 +10,13 @@ int PhoneBook::getContactCount(){
 }
 
 void PhoneBook::addContact(const Contact& newContact) {
-    if (contactCount < 8) {
-        contacts[contactCount] = newContact;
-        contactCount++;
+    if (contactIndex < 8) {
+        contacts[contactIndex] = newContact;
+        contactIndex++;
+        if (contactCount < 8)
+            contactCount++;
     } else {
-        contactCount = 0;
+        contactIndex = 0;
 		addContact(newContact);
     }
 }
